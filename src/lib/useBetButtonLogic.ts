@@ -98,7 +98,7 @@ const useBetButtonLogic = () => {
 
     if (!confirmation || confirmation.value?.err) {
       const failMsg = 'Failed to confirm transaction on Solana'
-      return alert(failMsg)
+      alert(failMsg)
     }
 
     console.log(confirmation)
