@@ -1,0 +1,183 @@
+{
+  "address": "iLEPWontSkuaCDeg8psrxB3mVHAA39fWWRtinSJcrtJ",
+  "metadata": {
+    "name": "fanplay",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "create_pool",
+      "discriminator": [233, 146, 209, 142, 207, 104, 64, 188],
+      "accounts": [
+        {
+          "name": "pool_admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "pool_account",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "pool_id",
+          "type": "string"
+        },
+        {
+          "name": "game_id",
+          "type": "u32"
+        }
+      ]
+    },
+    {
+      "name": "payout",
+      "discriminator": [149, 140, 194, 236, 174, 189, 6, 239],
+      "accounts": [
+        {
+          "name": "pool_account",
+          "writable": true
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "pool_admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "admin_token_account",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "rake",
+          "type": "u64"
+        },
+        {
+          "name": "pool_bump",
+          "type": "u8"
+        },
+        {
+          "name": "payout_list",
+          "type": {
+            "vec": {
+              "defined": {
+                "name": "PayoutItem"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "place_pick",
+      "discriminator": [3, 215, 3, 176, 155, 59, 179, 108],
+      "accounts": [
+        {
+          "name": "pool_account",
+          "writable": true
+        },
+        {
+          "name": "token_account",
+          "writable": true
+        },
+        {
+          "name": "user_ata",
+          "writable": true
+        },
+        {
+          "name": "user",
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "pick_spec",
+          "type": "string"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "PoolAccount",
+      "discriminator": [116, 210, 187, 119, 196, 196, 52, 137]
+    }
+  ],
+  "types": [
+    {
+      "name": "PayoutItem",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "user_token_account",
+            "type": "pubkey"
+          },
+          {
+            "name": "user_key",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PoolAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "pool_id",
+            "type": "string"
+          },
+          {
+            "name": "game_id",
+            "type": "u32"
+          },
+          {
+            "name": "pick_count",
+            "type": "u32"
+          },
+          {
+            "name": "picks_hash",
+            "type": "u32"
+          }
+        ]
+      }
+    }
+  ]
+}
