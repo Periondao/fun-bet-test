@@ -20,7 +20,7 @@ export const getMagic = async () => {
       extensions: [
         new OAuthExtension(),
         new SolanaExtension({
-          rpcUrl: heliusStakedNode,
+          rpcUrl: heliusStakedNode!,
         }),
       ],
     }
